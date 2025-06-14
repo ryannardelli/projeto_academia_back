@@ -21,6 +21,7 @@ public class ExerciseTraining {
     private Integer repetitions;
     private Integer heavy;
     private Integer duration;
+    private String urlVideo;
 
     @ManyToOne
     private Training training;

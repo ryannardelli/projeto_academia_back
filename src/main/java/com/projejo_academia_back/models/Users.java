@@ -20,6 +20,8 @@ public class Users {
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
+    private String urlPicture;
 
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
