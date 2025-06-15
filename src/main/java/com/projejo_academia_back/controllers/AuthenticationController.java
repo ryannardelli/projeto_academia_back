@@ -52,15 +52,10 @@ public class AuthenticationController {
         if(userRepository.findByEmail(data.email()) != null) {return ResponseEntity.badRequest().build();}
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        Users newUser = new Users(data.email(), encryptedPassword, data.role());
+        Users newUser = new Users(data.email(), data.firstName(), data.lastName(), encryptedPassword, data.role());
 
         this.userRepository.save(newUser);
 
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "hello world";
     }
 }
