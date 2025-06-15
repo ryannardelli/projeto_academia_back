@@ -1,5 +1,6 @@
 package com.projejo_academia_back.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projejo_academia_back.enums.RoleUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -68,4 +69,15 @@ public class Users implements UserDetails {
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
+
+//    @ManyToOne
+//    @JoinColumn(name = "profile_id")
+//    private Profile profile;
+
+    @JsonManagedReference
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+
+
 }
