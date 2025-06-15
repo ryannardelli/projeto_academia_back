@@ -28,7 +28,14 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/auth/test").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/auth/test").hasAuthority("Administrador")
+                                .requestMatchers("/oauth2/**", "/login/oauth2/**", "/auth/user").permitAll()
                         .anyRequest().authenticated()
+                )
+
+                .oauth2Login(oauth2 -> oauth2
+                        .defaultSuccessUrl("/auth/user", true)
                 )
 
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
