@@ -23,6 +23,8 @@ public class TokenService {
             String token = JWT.create()
                     .withIssuer("auth-api")
                     .withSubject(users.getEmail())
+                    .withClaim("id", users.getId_user())
+                    .withClaim("role", users.getRoleUser().name())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
             return token;
@@ -38,11 +40,25 @@ public class TokenService {
                     .withIssuer("auth-api")
                     .build()
                     .verify(token)
-                    .getSubject();
+                    .getClaim("role").asString();
         } catch (JWTVerificationException exception){
             return "";
         }
     }
+
+    public String getRole(String token) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+                    .withIssuer("auth-api")
+                    .build()
+                    .verify(token)
+                    .getClaim("role").asString();
+        } catch (JWTVerificationException exception){
+            return null;
+        }
+    }
+
 
     private Instant genExpirationDate(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
