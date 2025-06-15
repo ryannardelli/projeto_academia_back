@@ -33,11 +33,14 @@ public class Users implements UserDetails {
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
 
-    public Users(String email, String password, RoleUser roleUser) {
+    public Users(String email, String firstName, String lastName, String password, RoleUser roleUser) {
         this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.roleUser = roleUser;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -69,10 +72,6 @@ public class Users implements UserDetails {
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
-
-//    @ManyToOne
-//    @JoinColumn(name = "profile_id")
-//    private Profile profile;
 
     @JsonManagedReference
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
