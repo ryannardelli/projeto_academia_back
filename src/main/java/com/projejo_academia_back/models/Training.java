@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Table(name = "training")
 public class Training {
     @Id @GeneratedValue
-    private Long id_training;
+    private Long id;
 
     private String name;
     private LocalDate dateBeginTraining;

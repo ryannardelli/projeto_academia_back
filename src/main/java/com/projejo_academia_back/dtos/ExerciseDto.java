@@ -8,7 +8,7 @@ public class ExerciseDto {
     public String muscleGroup;
 
     public ExerciseDto(Exercise exercise) {
-       this.id_exercise = exercise.getId_exercise();
+       this.id_exercise = exercise.getId();
        this.name = exercise.getName();
        this.muscleGroup = exercise.getMuscleGroup();
     }
