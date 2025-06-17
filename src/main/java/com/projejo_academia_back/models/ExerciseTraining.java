@@ -22,6 +22,7 @@ public class ExerciseTraining {
     private Integer heavy;
     private Integer duration;
     private String urlVideo;
+    private Integer restTime;
 
     @ManyToOne
     private Training training;
