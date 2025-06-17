@@ -1,5 +1,6 @@
 package com.projejo_academia_back.services;
 
+import com.projejo_academia_back.dtos.ExerciseTrainingRequestDto;
 import com.projejo_academia_back.models.ExerciseTraining;
 import com.projejo_academia_back.repositories.TrainingExerciseRepository;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,22 @@ public class TrainingExerciseService {
     public ExerciseTraining associateTrainingToExercise(ExerciseTraining exerciseTraining) {
         return trainingExerciseRepository.save(exerciseTraining);
     }
+
+    @Transactional
+    public ExerciseTraining updateExerciseTraining(Long trainingId, Long exerciseId, ExerciseTrainingRequestDto dto) {
+        ExerciseTraining exerciseTraining = trainingExerciseRepository.findByTraining_IdAndExercise_Id(trainingId, exerciseId)
+                .orElseThrow(() -> new RuntimeException("Associação não encontrada"));
+
+        exerciseTraining.setSeries(dto.getSeries());
+        exerciseTraining.setRepetitions(dto.getRepetitions());
+        exerciseTraining.setHeavy(dto.getHeavy());
+        exerciseTraining.setDuration(dto.getDuration());
+        exerciseTraining.setUrlVideo(dto.getUrlVideo());
+        exerciseTraining.setRestTime(dto.getRestTime());
+
+        return trainingExerciseRepository.save(exerciseTraining);
+    }
+
 
     @Transactional
     public void deleteTrainingExercise(ExerciseTraining exerciseTraining) {
