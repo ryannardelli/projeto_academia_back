@@ -8,6 +8,7 @@ import com.projejo_academia_back.models.Training;
 import com.projejo_academia_back.repositories.ExerciseRepository;
 import com.projejo_academia_back.repositories.TrainingExerciseRepository;
 import com.projejo_academia_back.repositories.TrainingRepository;
+import com.projejo_academia_back.services.TrainingExerciseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,13 +23,15 @@ public class ExerciseTrainingController {
     private final ExerciseRepository exerciseRepository;
     private final TrainingRepository trainingRepository;
     private final TrainingExerciseRepository trainingExerciseRepository;
+    private final TrainingExerciseService trainingExerciseService;
 
     public ExerciseTrainingController(ExerciseRepository exerciseRepository,
                                       TrainingRepository trainingRepository,
-                                      TrainingExerciseRepository trainingExerciseRepository) {
+                                      TrainingExerciseRepository trainingExerciseRepository, TrainingExerciseService trainingExerciseService) {
         this.exerciseRepository = exerciseRepository;
         this.trainingRepository = trainingRepository;
         this.trainingExerciseRepository = trainingExerciseRepository;
+        this.trainingExerciseService = trainingExerciseService;
     }
 
     @GetMapping
@@ -69,6 +72,20 @@ public class ExerciseTrainingController {
         trainingExerciseRepository.save(exerciseTraining);
 
         return ResponseEntity.ok("Exercício associado ao treino com sucesso.");
+    }
+
+    @PutMapping("/{exerciseId}")
+    public ResponseEntity<String> updateExerciseInTraining(
+            @PathVariable Long trainingId,
+            @PathVariable Long exerciseId,
+            @RequestBody ExerciseTrainingRequestDto requestDto) {
+
+        try {
+            trainingExerciseService.updateExerciseTraining(trainingId, exerciseId, requestDto);
+            return ResponseEntity.ok("Exercício atualizado no treino com sucesso.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
