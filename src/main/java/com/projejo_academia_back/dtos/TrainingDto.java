@@ -11,7 +11,7 @@ public class TrainingDto {
     public LocalDate dateEndTraining;
 
     public TrainingDto(Training training) {
-        this.id_training = training.getId_training();
+        this.id_training = training.getId();
         this.name = training.getName();
         this.dateBeginTraining = training.getDateBeginTraining();
         this.dateEndTraining = training.getDateEndTraining();

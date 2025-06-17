@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Exercise {
     @Id
     @GeneratedValue
-    private Long id_exercise;
+    private Long id;
     private String name;
     private String muscleGroup;
 }
