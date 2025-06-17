@@ -29,7 +29,4 @@ public class Profile {
     @OneToOne(mappedBy = "profile")
     private Users users;
 
-
-//    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
-//    private List<Users> users;
 }
