@@ -9,7 +9,7 @@ public class ProfileDto {
     public String objective;
 
     public ProfileDto(Profile profile) {
-        this.id_profile = profile.getId_profile();
+        this.id_profile = profile.getId();
         this.height = profile.getHeight();
         this.weight = profile.getWeight();
         this.objective = profile.getObjective();

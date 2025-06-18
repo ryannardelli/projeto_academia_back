@@ -19,14 +19,13 @@ import java.util.List;
 public class Profile {
     @Id
     @GeneratedValue
-    private Long id_profile;
+    private Long id;
 
     private Double height;
     private Double weight;
     private String objective;
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "profile")
-    private Users users;
-
+//    @JsonBackReference
+//    @OneToOne(mappedBy = "profile")
+//    private Users users;
 }
