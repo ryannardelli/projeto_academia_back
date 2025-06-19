@@ -78,5 +78,4 @@ public class Users implements UserDetails {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-
 }

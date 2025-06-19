@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Diet {
     @Id
     @GeneratedValue
-    private Long id_diet;
+    private Long id;
 
     private String nameDiet;
     private LocalDate dateBeginDiet;

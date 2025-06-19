@@ -11,7 +11,7 @@ public class DietDto {
     public LocalDate dateEndDiet;
 
     public DietDto(Diet diet) {
-        this.IdDiet = diet.getId_diet();
+        this.IdDiet = diet.getId();
         this.nameDiet = diet.getNameDiet();
         this.dateBeginDiet = diet.getDateBeginDiet();
         this.dateEndDiet = diet.getDateEndDiet();
