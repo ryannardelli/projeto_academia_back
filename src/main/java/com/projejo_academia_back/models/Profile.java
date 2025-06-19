@@ -24,4 +24,8 @@ public class Profile {
     private Double height;
     private Double weight;
     private String objective;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    private List<Diet> diets;
 }

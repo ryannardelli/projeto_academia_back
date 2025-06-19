@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
+@Data
 @Table(name = "diet")
 public class Diet {
     @Id
@@ -23,5 +23,7 @@ public class Diet {
     private LocalDate dateEndDiet;
 
     @ManyToOne
+    @JoinColumn(name = "profile_id")
     private Profile profile;
+
 }
