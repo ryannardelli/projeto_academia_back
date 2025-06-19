@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/training/**").permitAll()
                         .requestMatchers("/exercise/**").permitAll()
                         .requestMatchers("/diet/**").permitAll()
+                        .requestMatchers("/meal/**").permitAll()
                         .requestMatchers("/training/*/exercise/*").permitAll()
                         .requestMatchers("/profile/*/training/*").permitAll()
                         .requestMatchers("/oauth2/**", "/login/oauth2/**", "/auth/user").permitAll()
