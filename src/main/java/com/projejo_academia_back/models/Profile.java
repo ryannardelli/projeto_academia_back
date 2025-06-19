@@ -24,8 +24,4 @@ public class Profile {
     private Double height;
     private Double weight;
     private String objective;
-
-//    @JsonBackReference
-//    @OneToOne(mappedBy = "profile")
-//    private Users users;
 }

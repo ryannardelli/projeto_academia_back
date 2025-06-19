@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "exerciseTraining")
 public class ExerciseTraining {
     @Id @GeneratedValue
-    private Long id_exerciseTraining;
+    private Long id;
 
     private Integer series;
     private Integer repetitions;

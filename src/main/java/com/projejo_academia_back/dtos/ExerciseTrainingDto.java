@@ -15,7 +15,7 @@ public class ExerciseTrainingDto {
     private Integer restTime;
 
     public ExerciseTrainingDto(ExerciseTraining exerciseTraining) {
-        this.idExerciseTraining = exerciseTraining.getId_exerciseTraining();
+        this.idExerciseTraining = exerciseTraining.getId();
         this.training = new TrainingDto(exerciseTraining.getTraining());
         this.exercise = new ExerciseDto(exerciseTraining.getExercise());
         this.series = exerciseTraining.getSeries();

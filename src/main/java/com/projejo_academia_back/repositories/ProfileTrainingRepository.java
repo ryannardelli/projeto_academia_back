@@ -1,6 +1,5 @@
 package com.projejo_academia_back.repositories;
 
-import com.projejo_academia_back.models.Profile;
 import com.projejo_academia_back.models.ProfileTraining;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
