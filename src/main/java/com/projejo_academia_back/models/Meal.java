@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor
@@ -18,10 +18,10 @@ import java.time.LocalDate;
 public class Meal {
     @Id
     @GeneratedValue
-    private Long id_meal;
+    private Long id;
 
     private String mealDescription;
-    private LocalDate scheduleMeal;
+    private LocalTime scheduleMeal;
 
     @ManyToOne
     private Diet diet;
