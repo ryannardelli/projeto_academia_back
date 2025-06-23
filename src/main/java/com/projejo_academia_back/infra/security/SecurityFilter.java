@@ -1,5 +1,6 @@
 package com.projejo_academia_back.infra.security;
 
+import com.projejo_academia_back.models.Users;
 import com.projejo_academia_back.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,6 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -32,7 +34,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             var email = tokenService.validateToken(token);
             var role = tokenService.getRole(token);
             if (email != null && role != null) {
-                UserDetails user = userRepository.findByEmail(email);
+                Optional<Users> user = userRepository.findByEmail(email);
 
                 List<GrantedAuthority> authorities = List.of(
                         new SimpleGrantedAuthority("ROLE_" + role)
