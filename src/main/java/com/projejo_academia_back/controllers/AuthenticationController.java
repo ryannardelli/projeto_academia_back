@@ -8,6 +8,7 @@ import com.projejo_academia_back.models.Users;
 import com.projejo_academia_back.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,9 +34,14 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @GetMapping("/user")
-    public Map<String, Object> getUser(@AuthenticationPrincipal OAuth2User user) {
-        return user.getAttributes();
+    public ResponseEntity<?> getUser(@AuthenticationPrincipal OAuth2User user) {
+        if (user == null) {
+            // Usuário não autenticado
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+        }
+        return ResponseEntity.ok(user.getAttributes());
     }
+
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticateDto data) {
@@ -49,7 +55,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDto data) {
-        if(userRepository.findByEmail(data.email()) != null) {return ResponseEntity.badRequest().build();}
+//        if(userRepository.findByEmail(data.email()) != null) {return ResponseEntity.badRequest().build();}
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         Users newUser = new Users(data.email(), data.firstName(), data.lastName(), encryptedPassword, data.role());
