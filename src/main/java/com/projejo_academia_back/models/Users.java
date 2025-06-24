@@ -26,19 +26,22 @@ public class Users implements UserDetails {
     private Long id_user;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
     private String picture;
+    private String phone;
 
     @Enumerated(EnumType.STRING)
     private RoleUser roleUser;
 
-    public Users(String email, String firstName, String lastName, String password, RoleUser roleUser) {
+    public Users(String email, String firstName, String lastName, String password, RoleUser roleUser, String phone) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.roleUser = roleUser;
+        this.phone = phone;
     }
 
 
