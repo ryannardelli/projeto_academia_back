@@ -61,6 +61,13 @@ public class AuthenticationController {
                     .body("E-mail já está em uso");
         }
 
+        if (!isPasswordValid(data.password())) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("Sua senha precisa ter pelo menos 8 letras ou números, com uma letra maiúscula, uma minúscula e um número.");
+        }
+
+
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         Users newUser = new Users(
                 data.email(),
@@ -74,6 +81,10 @@ public class AuthenticationController {
         userRepository.save(newUser);
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuário cadastrado com sucesso");
+    }
+
+    private boolean isPasswordValid(String password) {
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$");
     }
 
 }
