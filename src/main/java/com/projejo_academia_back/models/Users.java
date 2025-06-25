@@ -80,5 +80,4 @@ public class Users implements UserDetails {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id")
     private Profile profile;
-
 }
