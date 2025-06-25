@@ -37,6 +37,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/training/**").permitAll()
                         .requestMatchers("/exercise/**").permitAll()
                         .requestMatchers("/diet/**").permitAll()
+                        .requestMatchers("/metadata/**").permitAll()
                         .requestMatchers("/meal/**").permitAll()
                         .requestMatchers("/training/*/exercise/*").permitAll()
                         .requestMatchers("/meal/*/diet/*").permitAll()
