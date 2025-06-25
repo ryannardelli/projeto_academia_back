@@ -28,7 +28,6 @@ public class SecurityConfiguration {
         return  httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
@@ -43,6 +42,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/meal/*/diet/*").permitAll()
                         .requestMatchers("/profile/*/training/*").permitAll()
                         .requestMatchers("/profile/*/diet/*").permitAll()
+                        .requestMatchers("/user/*/profile/*").permitAll()
                         .requestMatchers("/oauth2/**", "/login/oauth2/**", "/auth/user").permitAll()
                         .requestMatchers(
                                 "/v3/api-docs/**",
