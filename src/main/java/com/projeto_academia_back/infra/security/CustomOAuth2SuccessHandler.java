@@ -64,7 +64,11 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         cookie.setMaxAge(60 * 60 * 2); // 2 horas
         response.addCookie(cookie);
 
-        // Redireciona
-        response.sendRedirect("http://localhost:3000/dashboard");
+        if (user.isProfileConfigured()) {
+            response.sendRedirect("http://localhost:3000/dashboard");
+        } else {
+            response.sendRedirect("http://localhost:3000/profile-setup");
+        }
+
     }
 }

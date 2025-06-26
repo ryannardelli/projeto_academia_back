@@ -72,7 +72,8 @@ public class AuthenticationController {
                 data.lastName(),
                 encryptedPassword,
                 data.role(),
-                data.phone()
+                data.phone(),
+                data.profileConfigured()
         );
 
         userRepository.save(newUser);
