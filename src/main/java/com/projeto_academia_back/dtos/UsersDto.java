@@ -10,5 +10,6 @@ public class UsersDto {
     public String email;
     public String urlPicture;
     public RoleUser role;
+    public boolean profileConfigured;
     public ProfileDto profile;
 }
