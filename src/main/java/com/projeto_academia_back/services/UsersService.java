@@ -1,6 +1,7 @@
 package com.projeto_academia_back.services;
 
 
+import com.projeto_academia_back.dtos.UpdateUserDto;
 import com.projeto_academia_back.models.Users;
 import com.projeto_academia_back.repositories.ProfileRepository;
 import com.projeto_academia_back.repositories.UserRepository;
@@ -31,4 +32,30 @@ public class UsersService {
         userRepository.deleteById(id);
     }
 
+    public Users updateUser(Long id, UpdateUserDto dto) {
+        Optional<Users> optionalUser = userRepository.findById(id);
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("Usuário não encontrado.");
+        }
+
+        Users user = optionalUser.get();
+
+        if (dto.getFirstName() != null) {
+            user.setFirstName(dto.getFirstName());
+        }
+
+        if (dto.getLastName() != null) {
+            user.setLastName(dto.getLastName());
+        }
+
+        if (dto.getPhone() != null) {
+            user.setPhone(dto.getPhone());
+        }
+
+        if (dto.getProfileConfigured() != null) {
+            user.setProfileConfigured(dto.getProfileConfigured());
+        }
+
+        return userRepository.save(user);
+    }
 }
