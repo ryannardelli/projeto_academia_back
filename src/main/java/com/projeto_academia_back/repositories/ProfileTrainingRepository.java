@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface ProfileTrainingRepository extends JpaRepository<ProfileTraining, Long> {
     List<ProfileTraining> findByProfile_Id(long profileId);
     Optional<ProfileTraining> findByTraining_IdAndProfile_Id(long profileId, long trainingId);
+    List<ProfileTraining> findAllByProfileId(long trainingId);
 }
